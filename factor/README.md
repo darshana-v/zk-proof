@@ -3,6 +3,7 @@
 #### 2. compile the circuit:
 
 `circom circuit.circom --r1cs --wasm --sym`
+
 - --r1cs: generates r1cs constraint system of the circuit in binary format
 - --wasm: generates wasm code to generate the witness
 - --sym: generates symbols file required for debugging and printing the constraint system in an annotated mode
@@ -17,11 +18,24 @@ print constraints of circuit:
 
 `snarkjs printconstraints -r circuit.r1cs -s circuit.sym`
 
-(doesn't work so do the next one:)
+(doesn't work so run:)
 
 `snarkjs rp circuit.r1cs circuit.sym`
 
 Output:
+
 ```
 [INFO] snarkJS: [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.a ] \* [ main.b ] - [ 21888242871839275222246405745257275088548364400416034343698204186575808495616main.c ] = 0
 ```
+
+Export to json file:
+
+`snarkjs rej circuit.r1cs circuit.json`
+
+#### 4. generate trusted setup
+
+generate proving and verification key:
+
+`snarkjs setup -r circuit.r1cs`
+
+(doesn't work so run:)
